@@ -30,17 +30,17 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-full border-b border-border bg-card/80 backdrop-blur xl:min-h-screen xl:w-72 xl:border-b-0 xl:border-r">
+    <aside className="w-full border-b border-border bg-card/70 backdrop-blur-xl xl:min-h-screen xl:w-72 xl:border-b-0 xl:border-r">
       <div className="flex items-center gap-3 px-6 py-5">
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/20 text-primary">
+        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/20 text-primary shadow-panel">
           <BarChart3 className="h-6 w-6" />
         </div>
         <div>
-          <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">Options Scanner</p>
-          <h1 className="text-lg font-semibold">Pro Dashboard</h1>
+          <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">Fintech SaaS</p>
+          <h1 className="text-lg font-semibold">Market Intelligence</h1>
         </div>
       </div>
-      <nav className="grid gap-2 px-4 pb-6 xl:px-6">
+      <nav className="flex gap-2 overflow-x-auto px-4 pb-6 xl:grid xl:overflow-visible xl:px-6">
         {links.map((link) => {
           const Icon = link.icon;
           const active = pathname === link.href;
@@ -50,9 +50,9 @@ export function Sidebar() {
               key={link.href}
               href={link.href}
               className={[
-                "flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm transition",
+                "flex shrink-0 items-center gap-3 rounded-2xl border px-4 py-3 text-sm transition duration-300 xl:shrink",
                 active
-                  ? "border-primary/50 bg-primary/10 text-primary"
+                  ? "border-primary/50 bg-primary/10 text-primary shadow-panel"
                   : "border-transparent bg-transparent text-muted-foreground hover:border-border hover:bg-secondary hover:text-foreground"
               ].join(" ")}
             >

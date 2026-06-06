@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --background: 210 40% 98%;
+  --background: 210 30% 97%;
   --foreground: 222 47% 11%;
   --card: 0 0% 100%;
   --card-foreground: 222 47% 11%;
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --primary: 186 100% 41%;
+  --border: 214 28% 88%;
+  --input: 214 28% 88%;
+  --primary: 191 95% 42%;
   --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96%;
+  --secondary: 210 32% 95%;
   --secondary-foreground: 222 47% 11%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
-  --accent: 191 91% 36%;
+  --muted: 210 32% 95%;
+  --muted-foreground: 215 15% 42%;
+  --accent: 171 82% 40%;
   --accent-foreground: 210 40% 98%;
   --success: 142 72% 34%;
   --danger: 0 72% 51%;
@@ -23,19 +23,19 @@
 }
 
 .dark {
-  --background: 222 47% 8%;
+  --background: 224 53% 6%;
   --foreground: 210 40% 98%;
-  --card: 222 37% 12%;
+  --card: 222 37% 10%;
   --card-foreground: 210 40% 98%;
-  --border: 217 33% 22%;
-  --input: 217 33% 22%;
-  --primary: 186 100% 41%;
+  --border: 217 32% 18%;
+  --input: 217 32% 18%;
+  --primary: 191 95% 42%;
   --primary-foreground: 210 40% 98%;
-  --secondary: 217 33% 16%;
+  --secondary: 217 33% 13%;
   --secondary-foreground: 210 40% 98%;
-  --muted: 217 33% 16%;
+  --muted: 217 33% 13%;
   --muted-foreground: 215 20% 65%;
-  --accent: 197 82% 52%;
+  --accent: 171 82% 40%;
   --accent-foreground: 210 40% 98%;
   --success: 142 70% 45%;
   --danger: 0 84% 60%;
@@ -53,7 +53,12 @@ html {
 body {
   @apply bg-background text-foreground antialiased;
   font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
-  background-image: theme("backgroundImage.grid");
+  background-image:
+    radial-gradient(circle at top left, rgba(8, 145, 178, 0.12), transparent 24%),
+    radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 22%),
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: auto, auto, 30px 30px, 30px 30px;
 }
 
 h1,
@@ -67,4 +72,34 @@ h6 {
 
 a {
   @apply transition-colors;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.24);
+  border-radius: 999px;
+}
+
+.animate-rise {
+  animation: rise 0.6s ease-out both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

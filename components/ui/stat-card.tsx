@@ -8,7 +8,7 @@ const trendClasses: Record<DashboardStat["trend"], string> = {
 
 export function StatCard({ title, value, change, trend, detail }: DashboardStat) {
   return (
-    <article className="rounded-3xl border border-border bg-card/90 p-5 shadow-panel">
+    <article className="rounded-3xl border border-border bg-card/90 p-5 shadow-panel backdrop-blur transition duration-300 hover:-translate-y-1">
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-sm text-muted-foreground">{title}</p>
