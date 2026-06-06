@@ -1,21 +1,71 @@
 # Options Scanner Dashboard
 
-A professional starter dashboard for an options scanning workflow, built with Next.js 15, TypeScript, Tailwind CSS, dark mode support, and mock market data that can later be replaced with Polygon.io integrations.
+A portfolio-quality trading dashboard built with Next.js 15, TypeScript, and Tailwind CSS to demonstrate product thinking, front-end architecture, and a scalable path from mock data to live market integrations.
 
-## Features
+This project presents a professional options scanning workflow across premarket momentum, earnings catalysts, unusual volume, and execution watchlists. The current implementation uses structured mock data, while the repository is organized so a future Polygon.io integration can be introduced without rewriting the page layer.
 
-- Next.js 15 App Router architecture
-- TypeScript across the app
-- Tailwind CSS styling with dark mode
-- Mobile-responsive layout
-- Dedicated pages for:
-  - Dashboard
-  - Premarket Movers
-  - Earnings Calendar
-  - Unusual Volume Scanner
-  - Watchlists
-- Mock market data repository with a future-ready adapter pattern
-- Unit tests with Vitest and Testing Library
+## Why This Project Stands Out
+
+- Built with the Next.js 15 App Router and strict TypeScript typing
+- Uses a reusable data repository pattern that can swap mock sources for live APIs
+- Includes dark mode, responsive layouts, and consistent dashboard UI primitives
+- Organizes scanner workflows into distinct, recruiter-friendly product surfaces
+- Includes unit tests for shared utilities and reusable UI components
+
+## Product Surfaces
+
+- `Dashboard` for a high-level view of active setups, scanner health, and market context
+- `Premarket Movers` for gappers, catalysts, and early participation signals
+- `Earnings Calendar` for scheduled catalysts and implied move monitoring
+- `Unusual Volume Scanner` for relative volume spikes and momentum confirmation
+- `Watchlists` for discretionary trade planning and execution triggers
+
+## Tech Stack
+
+- `Next.js 15`
+- `React 19`
+- `TypeScript`
+- `Tailwind CSS`
+- `next-themes` for dark mode
+- `Vitest` and `Testing Library` for unit tests
+
+## Screenshots
+
+### Dashboard Command Center
+
+![Dashboard Command Center](public/screenshots/dashboard.png)
+
+### Premarket Momentum Monitor
+
+![Premarket Momentum Monitor](public/screenshots/premarket-movers.png)
+
+### Earnings Catalyst Calendar
+
+![Earnings Catalyst Calendar](public/screenshots/earnings-calendar.png)
+
+### Unusual Volume Intelligence
+
+![Unusual Volume Intelligence](public/screenshots/unusual-volume-scanner.png)
+
+### Trade Watchlist Workspace
+
+![Trade Watchlist Workspace](public/screenshots/watchlists.png)
+
+## Architecture Highlights
+
+### App Router Structure
+
+The application uses the Next.js App Router for route-based page composition, shared layout handling, and clean separation between route segments.
+
+### Reusable Component System
+
+Common UI patterns such as navigation, page headers, cards, tables, and status badges are split into reusable components to keep pages focused on product logic rather than repeated markup.
+
+### Future-Ready Data Layer
+
+Mock market data is isolated behind a repository-style interface in [`lib/data/index.ts`](./lib/data/index.ts). The placeholder Polygon adapter in [`lib/data/polygon-adapter.ts`](./lib/data/polygon-adapter.ts) shows where live fetchers would be introduced later.
+
+This allows the UI layer to stay stable while the backing data source evolves from mock JSON to real-time or REST-based market services.
 
 ## Project Structure
 
@@ -43,12 +93,12 @@ A professional starter dashboard for an options scanning workflow, built with Ne
 │   │   └── signal-badge.tsx
 │   ├── providers
 │   │   └── theme-provider.tsx
-│   ├── ui
-│   │   ├── data-table.tsx
-│   │   ├── page-header.tsx
-│   │   ├── section-card.tsx
-│   │   └── stat-card.tsx
-│   └── theme-toggle.tsx
+│   ├── theme-toggle.tsx
+│   └── ui
+│       ├── data-table.tsx
+│       ├── page-header.tsx
+│       ├── section-card.tsx
+│       └── stat-card.tsx
 ├── lib
 │   ├── data
 │   │   ├── index.ts
@@ -57,6 +107,13 @@ A professional starter dashboard for an options scanning workflow, built with Ne
 │   ├── types
 │   │   └── market.ts
 │   └── utils.ts
+├── public
+│   └── screenshots
+│       ├── dashboard.png
+│       ├── earnings-calendar.png
+│       ├── premarket-movers.png
+│       ├── unusual-volume-scanner.png
+│       └── watchlists.png
 ├── tests
 │   ├── components
 │   │   ├── data-table.test.tsx
@@ -75,7 +132,7 @@ A professional starter dashboard for an options scanning workflow, built with Ne
 └── vitest.config.ts
 ```
 
-## Getting Started
+## Local Development
 
 1. Install dependencies:
 
@@ -89,39 +146,33 @@ npm install
 npm run dev
 ```
 
-3. Open the app:
-
-```text
-http://localhost:3000
-```
+3. Open the app at [http://localhost:3000](http://localhost:3000).
 
 ## Available Scripts
 
 - `npm run dev` starts the local development server
 - `npm run build` creates a production build
 - `npm run start` runs the production server
-- `npm run lint` runs Next.js linting
+- `npm run lint` runs ESLint across the project
 - `npm run test` runs the unit test suite
 - `npm run test:watch` runs Vitest in watch mode
 
-## Data Layer Design
+## Testing
 
-The mock data lives in [`lib/data/mock-market-data.ts`](/Users/mrmoeve/Documents/Options Scanner Dashboard/lib/data/mock-market-data.ts) and is exposed through [`lib/data/index.ts`](/Users/mrmoeve/Documents/Options Scanner Dashboard/lib/data/index.ts).
+The test suite currently covers:
 
-To connect Polygon.io later:
+- formatting helpers in [`lib/utils.ts`](./lib/utils.ts)
+- reusable table rendering in [`components/ui/data-table.tsx`](./components/ui/data-table.tsx)
+- dashboard metric card rendering in [`components/ui/stat-card.tsx`](./components/ui/stat-card.tsx)
 
-1. Replace the implementation exported from `lib/data/index.ts`.
-2. Implement live fetchers in [`lib/data/polygon-adapter.ts`](/Users/mrmoeve/Documents/Options Scanner Dashboard/lib/data/polygon-adapter.ts).
-3. Keep page and component code unchanged by preserving the same repository interface.
-
-## Deployment Instructions
+## Deployment
 
 ### Vercel
 
 1. Push the repository to GitHub.
 2. Import the repository into [Vercel](https://vercel.com/).
-3. Set any future environment variables, such as a Polygon.io API key.
-4. Deploy using the default Next.js build settings.
+3. Add future environment variables such as `POLYGON_API_KEY` when live integrations are introduced.
+4. Deploy with the default Next.js build settings.
 
 ### Manual Production Build
 
@@ -131,9 +182,25 @@ npm run build
 npm run start
 ```
 
-## Future Enhancements
+## Extending to Polygon.io
 
-- Replace mock services with Polygon.io REST and websocket adapters
-- Add authentication and persistent user watchlists
-- Add advanced filter panels for sector, float, and options flow
-- Introduce charts and intraday visualizations
+To move from mock data to a live market integration:
+
+1. Implement live fetchers in [`lib/data/polygon-adapter.ts`](./lib/data/polygon-adapter.ts).
+2. Switch the export in [`lib/data/index.ts`](./lib/data/index.ts) from mock sources to Polygon-backed sources.
+3. Preserve the existing repository contract so pages and components continue to work unchanged.
+
+## What Recruiters and Hiring Managers Can Evaluate Here
+
+- Front-end architecture and code organization
+- Design consistency across multiple dashboard surfaces
+- Responsiveness and dark mode implementation
+- Separation of product UI from service/data concerns
+- Readiness for API-driven extension and production deployment
+
+## Next Iterations
+
+- Replace mock services with Polygon.io REST and websocket integrations
+- Add filter controls for sector, float, and options flow
+- Introduce charting for intraday context and historical comparisons
+- Add authentication and persistent personal watchlists
