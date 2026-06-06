@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import {
   Activity,
@@ -11,7 +12,13 @@ import {
   Zap
 } from "lucide-react";
 
-const links = [
+interface SidebarLink {
+  href: Route;
+  label: string;
+  icon: typeof LayoutDashboard;
+}
+
+const links: SidebarLink[] = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/premarket-movers", label: "Premarket Movers", icon: Activity },
   { href: "/earnings-calendar", label: "Earnings Calendar", icon: CalendarClock },
