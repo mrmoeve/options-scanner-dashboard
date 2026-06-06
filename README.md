@@ -1,5 +1,11 @@
 # Options Scanner Dashboard
 
+## Live Demo
+
+**Recruiter quick view:** Explore the live application here: [options-scanner-dashboard-ecru.vercel.app](https://options-scanner-dashboard-ecru.vercel.app)
+
+This deployment showcases the responsive dashboard experience, dark mode presentation, and the full set of scanner pages in a production-ready environment.
+
 A portfolio-quality trading dashboard built with Next.js 15, TypeScript, and Tailwind CSS to demonstrate product thinking, front-end architecture, and a scalable path from mock data to live market integrations.
 
 This project presents a professional options scanning workflow across premarket momentum, earnings catalysts, unusual volume, and execution watchlists. The current implementation uses structured mock data, while the repository is organized so a future Polygon.io integration can be introduced without rewriting the page layer.
